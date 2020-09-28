@@ -1,0 +1,14 @@
+.game-container {
+  background-color: grey;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .board-container {
+    width: 600px;
+    height: 600px;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
