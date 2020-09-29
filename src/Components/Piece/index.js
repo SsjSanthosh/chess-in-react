@@ -5,6 +5,7 @@ import { DRAG_DROP_TYPE } from "../../constants";
 import "./style.scss";
 function Piece({ piece, position }) {
   const { type, color } = piece;
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
   const [{ isDragging }, drag, preview] = useDrag({
     item: {
       id: `${position}_${type}_${color}`,
@@ -21,7 +22,7 @@ function Piece({ piece, position }) {
       <div
         className="board-piece"
         ref={drag}
-        style={{ opacity: isDragging ? 0 : 1 }}
+        style={{ opacity: isDragging && !isMobile ? 0 : 1 }}
       >
         <img src={image} alt={`${piece.type}`} />
       </div>

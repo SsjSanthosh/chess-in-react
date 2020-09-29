@@ -19,7 +19,10 @@ export const getSquarePosition = (idx, turn) => {
 };
 
 export const updateGameBoard = (chess, state, { from, to }) => {
+  // check for promotion if the piece is in the penultimate row
+  console.log(from, to);
   if (from.includes("7")) {
+    console.log("promotion possible");
     const promotions = chess
       .moves({ verbose: true })
       .filter((c) => c.promotion);
@@ -36,10 +39,28 @@ export const updateGameBoard = (chess, state, { from, to }) => {
     }
   }
   const move = chess.move({ from, to });
-  console.log("move is", move);
+  if (chess.game_over()) {
+    if (chess.in_checkmate()) {
+      return {
+        ...state,
+        game_over: true,
+        game_result: `CHECKMATE - ${
+          chess.turn() === "w" ? "BLACK" : "WHITE"
+        } WINS!`,
+      };
+    }
+    if (chess.in_draw()) {
+      return {
+        ...state,
+        game_over: true,
+        game_result: `DRAW!`,
+      };
+    }
+  }
   if (!move) {
     return { ...state };
   }
+
   if (move.captured) {
     return {
       ...state,

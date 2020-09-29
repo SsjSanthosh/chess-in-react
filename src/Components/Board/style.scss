@@ -7,6 +7,10 @@
   .board-container {
     width: 600px;
     height: 600px;
+    @media (max-width: 620px) {
+      width: 350px;
+      height: 350px;
+    }
     background-color: white;
     display: flex;
     flex-wrap: wrap;
