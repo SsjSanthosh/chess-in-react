@@ -8,9 +8,8 @@ import GameOver from "../GameOver";
 import "./style.scss";
 
 function Board({ board, spares, paused, promoting, turn, game_over, message }) {
-  console.log(game_over);
+  //TODO: Show spare pieces around the board
   function renderBoard() {
-    console.log(promoting);
     return board.map((square, idx) => {
       return (
         <Square
